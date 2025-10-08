@@ -3,21 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Tela de Login</title><link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   <div class="container">
     <h1>Login</h1>
-
     <input type="text" id="usuario" placeholder="Nome de usuário">
     <div id="erroUsuario" class="erro"></div>
 
     <input type="email" id="email" placeholder="E-mail">
     <div id="erroEmail" class="erro"></div>
 
-    <div class="senha-container">
-      <input type="password" id="senha" placeholder="Senha">
-      <span onclick="toggleSenha()">👁️</span>
-    </div>
+    <input type="password" id="senha" placeholder="Senha">
     <div id="erroSenha" class="erro"></div>
 
     <button onclick="validarCampos()">Entrar</button>
@@ -26,14 +23,9 @@
   </div>
 
   <script>
-    function toggleSenha() {
-      const senhaInput = document.getElementById("senha");
-      senhaInput.type = senhaInput.type === "password" ? "text" : "password";
-    }
-
     function validarCampos() {
       const usuario = document.getElementById("usuario").value.trim();
-      const email = document.getElementById("email").value.trim();
+      const email = document.getElementById("email").value .trim();
       const senha = document.getElementById("senha").value.trim();
 
       const erroUsuario = document.getElementById("erroUsuario");
@@ -50,15 +42,15 @@
 
       let valido = true;
 
-      // Validação do usuário
+      // Validação do usuário (somente letras e números)
       const regexUsuario = /^[a-zA-Z0-9\s]+$/;
       if (!regexUsuario.test(usuario)) {
-        erroUsuario.textContent = "Use apenas letras e números, e espaços.";
+        erroUsuario.textContent = "Use apenas letras e números ,e espaços.";
         valido = false;
       }
 
       // Validação do e-mail
-      const regexEmail = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!regexEmail.test(email)) {
         erroEmail.textContent = "Digite um e-mail válido.";
         valido = false;
@@ -72,17 +64,8 @@
 
       // Se tudo estiver certo
       if (valido) {
-        // Simulação de login real
-        if (usuario === "admin" && email === "admin@email.com" && senha === "12345678") {
-          mensagemFinal.textContent = "Login realizado com sucesso!";
-          mensagemFinal.className = "sucesso";
-          setTimeout(() => {
-            window.location.href = "calculadora.html"; // redireciona
-          }, 1500);
-        } else {
-          mensagemFinal.textContent = "Usuário, e-mail ou senha incorretos.";
-          mensagemFinal.className = "erro";
-        }
+        mensagemFinal.textContent = "Login realizado com sucesso!";
+        mensagemFinal.className = "sucesso";
       }
     }
   </script>
